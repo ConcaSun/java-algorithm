@@ -1,7 +1,6 @@
 package com.usoft.suntg.algorithm.math;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 合并区间
@@ -20,6 +19,7 @@ import java.util.List;
  * 解释: 区间 [1,4] 和 [4,5] 可被视为重叠区间。
  *
  * @author suntg
+ * @date 2018年10月15日09:13:09
  */
 public class MergeInterval {
 
@@ -30,14 +30,36 @@ public class MergeInterval {
      */
     public static List<Interval> merge(List<Interval> intervals) {
         List<Interval> resultInterval = new ArrayList<Interval>();
-        // TODO
+        // 先把区间按照起始值从小到大排列
+        Collections.sort(intervals, (o1, o2) -> {
+            return o1.start - o2.start;
+        });
+
+        // 最后结果的每一个区间的左右边界
+        int left = intervals.get(0).start;
+        int right = intervals.get(0).end;;
+        for (int i = 1; i < intervals.size(); i ++) {
+            Interval interval = intervals.get(i);
+            if (right < interval.start) {
+                // 如果当前的起始值大于之前的结束值，区间已经分割，需要把前面那个区间加入到结果集中
+                resultInterval.add(new Interval(left, right));
+                // 然后在把当前这个区间的起始值和结束值，当做新区间的起始值和结束值进行下一次循环
+                left = intervals.get(i).start;
+                right = intervals.get(i).end;
+            } else {
+                // 如果当前区间的起始值小于之前的结束值，区间应该合并，并去两者的结束值中较大的为新的结束值
+                right = Integer.max(right, interval.end);
+            }
+        }
+        // 把最后一个加入
+        resultInterval.add(new Interval(left, right));
         return resultInterval;
     }
 
     /**
      * 区间
      */
-    public class Interval {
+    public static class Interval {
         int start;
         int end;
 
@@ -52,7 +74,7 @@ public class MergeInterval {
 
         @Override
         public String toString() {
-            return "[" + start + "," + end + "]";
+            return "[" + start + ", " + end + "]";
         }
     }
 }
