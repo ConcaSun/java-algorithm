@@ -1,4 +1,4 @@
-package com.usoft.suntg.algorithm.math.structure;
+package com.usoft.suntg.algorithm.structure;
 
 import com.usoft.suntg.algorithm.structure.stack.LinkedStack;
 import com.usoft.suntg.algorithm.structure.stack.SequenceStack;
