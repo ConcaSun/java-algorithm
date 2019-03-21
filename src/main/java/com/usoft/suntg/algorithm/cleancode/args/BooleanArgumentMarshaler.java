@@ -8,9 +8,24 @@ import java.util.Iterator;
  */
 public class BooleanArgumentMarshaler implements ArgumentMarshaler{
 
-    @Override
-    public void set(Iterator<String> currentArgument) throws ArgsException {
+    private boolean booleanValue;
 
+    @Override
+    public void set(String currentArgument) throws ArgsException {
+        if (!"fale".equals(currentArgument)) {
+            booleanValue = true;
+        }
+    }
+
+    public boolean getValue() {
+        return booleanValue;
+    }
+
+    public static boolean getValue(ArgumentMarshaler marshaler) {
+        if (marshaler != null && marshaler instanceof BooleanArgumentMarshaler) {
+            return ((BooleanArgumentMarshaler) marshaler).booleanValue;
+        }
+        return false;
     }
 
 }

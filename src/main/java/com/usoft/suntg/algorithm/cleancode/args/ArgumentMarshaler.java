@@ -8,11 +8,6 @@ import java.util.Iterator;
  */
 public interface ArgumentMarshaler {
 
-    /**
-     *
-     * @param currentArgument
-     * @throws ArgsException
-     */
-    public void set(Iterator<String> currentArgument) throws ArgsException;
+    public void set(String currentArgument) throws ArgsException;
 
 }
