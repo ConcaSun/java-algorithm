@@ -1,4 +1,4 @@
-package com.usoft.suntg.algorithm;
+package com.usoft.suntg.algorithm.pattern;
 
 import com.usoft.suntg.algorithm.patterns.AbstractCalculator;
 import com.usoft.suntg.algorithm.patterns.MultiCalculator;
