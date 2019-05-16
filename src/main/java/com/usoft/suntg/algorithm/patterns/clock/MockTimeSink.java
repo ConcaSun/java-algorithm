@@ -1,6 +1,7 @@
 package com.usoft.suntg.algorithm.patterns.clock;
 
 /**
+ * 观察者模式
  * Created by ConcaSun on 2019/4/23.
  */
 public class MockTimeSink implements Observer {
